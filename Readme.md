@@ -27,3 +27,18 @@ In this project, we aim to build an information retrieval system for queries rel
 **indexing.py**
 
 	* inverted_indexing() - generates inverted index of the documents
+
+**Ranking.py**
+
+	* get_ranks() - Driver Function to Rank Selected Webpages
+
+        * create_network() - Creating a pre-requiste DataSet for Ranking
+
+	* get_relations() - Functions return only the relevant weblinks
+
+	* collect_relations()- Driver Function for collecting the inter-links
+
+
+**Querying.py**
+
+	* select_links() - Selecting Links based on the Query
