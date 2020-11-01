@@ -22,6 +22,7 @@ if __name__ == '__main__':
 
     #The below line is to be uncommented to collect data and pre-process data,
     #otherwise to use existing data, not required to modify code
+    
     df = wikiScraper()
     #df = pd.read_csv('Documents\\raw_data.csv')
     
