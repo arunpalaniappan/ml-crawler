@@ -32,11 +32,11 @@ In this project, we aim to build an information retrieval system for queries rel
 
 	* get_ranks() - Driver Function to Rank Selected Webpages
 
-        * create_network() - Creating a pre-requiste DataSet for Ranking
-
 	* get_relations() - Functions return only the relevant weblinks
 
 	* collect_relations()- Driver Function for collecting the inter-links
+	
+	* create_network() - Creating a pre-requiste DataSet for Ranking
 
 
 **Querying.py**
