@@ -3,11 +3,16 @@ from Preprocessing import controller,text_cleaner
 from indexing import inverted_indexing
 from Querying import select_links
 from Ranking import get_ranks
+from FeatureCreation import create_vector
+from Learning_to_rank import Model_creation
+from final_ranking import ranking
+from ui_form import startUI,displayUI
 
 import re
 import requests
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
+import numpy as np
 
 import nltk
 from nltk.corpus import stopwords
@@ -17,6 +22,8 @@ nltk.download('stopwords')
 import re
 import operator
 
+
+      
 if __name__ == '__main__':
 
     print("Welcome:")
@@ -41,18 +48,19 @@ if __name__ == '__main__':
 
     print("Before Querying")
 
-    Query = str(input("Enter the Query"))
-
-    Query = text_cleaner(Query)
+    #f = open("query.txt", "r")
     
+    #ui = startUI()
+    Query = input("Enter your Query")
+    Query = text_cleaner(Query)
+    print("here")
     selected_links = select_links(inverted_index, Query)
 
    
-    
     print("After Querying")
     print('\n')
     print("Before Ranking")
-
+    
     if selected_links == set():
         print("No Matching Found")
 
@@ -68,7 +76,43 @@ if __name__ == '__main__':
         for i in Ranked_links:
             print(urls[i],"\n")
         
-    print("After Ranking\n")
+        print("After Ranking\n")
 
-    print("End of Phase 2")
+        print("End of Phase 2\n")
+
+        print("Start of phase 3\n")
+
+        print("Learning to Rank\n")
+    
+        documents = []
+
+        for i in Ranked_links:
+            documents.append(cleaned_contents[i-1])
+
+        sorted_docs, inverted_docs = create_vector(documents)
+    
+        train_data = list(sorted_docs)
+    
+        #train_data.extend(list(inverted_docs))
+    
+        train_pair = train_data[::-1]
+    
+        Y = [1]*len(sorted_docs)
+    
+        #Y.extend([0]*len(sorted_docs))
+    
+        print("After Vectorizing")
+
+        model_results = Model_creation(np.array(train_data),np.array(train_pair),Y)
+    
+        print("After Modelling")
+    
+        final_Rank = ranking(model_results,Ranked_links)
+    
+        results = ""
+        for i in final_Rank:
+            print(urls[i],"\n")
+            results += urls[i]+"\n"
+            
+        displayUI(results,Query)
     
