@@ -27,6 +27,8 @@ In this project, we aim to build an information retrieval system for queries rel
 **indexing.py**
 
 	* inverted_indexing() - generates inverted index of the documents
+	
+
 
 **Ranking.py**
 
@@ -42,3 +44,30 @@ In this project, we aim to build an information retrieval system for queries rel
 **Querying.py**
 
 	* select_links() - Selecting Links based on the Query
+
+
+
+**FeatureCreation.py**
+
+	* text_cleaner() - cleaning the dataset
+	
+	* vectorizing() - Converting the data into vector form
+	
+	* create_vector() - driver functions 
+	
+
+**Learning_to_rank.py**
+
+	* RankNet() - Architecture of the RankNet
+
+	* Model_creation() - Driver function to train and text
+	
+
+**final_Ranking.py**
+
+	* Ranking() - Final ranking based on Train and Test
+
+
+**ui_form.py**
+
+	* displayUI() -Function to display the UI
